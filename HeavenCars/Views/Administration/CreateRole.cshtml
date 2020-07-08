@@ -1,0 +1,43 @@
+﻿@model HeavenCars.ViewModels.Administration.RoleCreateViewModel
+
+@{
+    ViewBag.Title = "Create New Role";
+}
+
+<h1>Create New Role</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        @if (User.IsInRole("Admin"))
+        {
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="RoleName"></label>
+                    <input asp-for="RoleName" class="form-control" />
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-success" style="width:auto;">Create Role</button>
+                <a asp-controller="administration" asp-action="listroles" class="btn btn-primary">Roles</a>
+            </form>
+        }
+        else
+        {
+            <div class="text-center">
+                <h1 class="text-danger">Access Denied</h1>
+                <h6 class="text-danger">No access to view this resource!!!</h6>
+                <img src="~/images/AccesDenied.png" style="height:300px; width:300px;" />
+            </div>
+
+            <h5 class="card-title">
+                Use the button below to return
+            </h5>
+            <a class="btn btn-primary" style="width:auto" asp-controller="Administration" asp-action="ListRoles">
+                Back To List
+            </a>
+
+        }
+    </div>
+</div>

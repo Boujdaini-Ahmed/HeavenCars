@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeavenCars", "HeavenCars\HeavenCars.csproj", "{C63B97C6-5412-4854-A2C1-4DD0F92D0878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavenCars.DataAccessLayer", "HeavenCars.DataAccessLayer\HeavenCars.DataAccessLayer.csproj", "{1218F289-8810-470C-A264-870CC3AD82CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C63B97C6-5412-4854-A2C1-4DD0F92D0878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63B97C6-5412-4854-A2C1-4DD0F92D0878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63B97C6-5412-4854-A2C1-4DD0F92D0878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63B97C6-5412-4854-A2C1-4DD0F92D0878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1218F289-8810-470C-A264-870CC3AD82CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1218F289-8810-470C-A264-870CC3AD82CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1218F289-8810-470C-A264-870CC3AD82CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1218F289-8810-470C-A264-870CC3AD82CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4BA2F48-8D58-4524-830E-201F7AFE1DFC}
+	EndGlobalSection
+EndGlobal

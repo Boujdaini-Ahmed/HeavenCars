@@ -1,0 +1,51 @@
+﻿@model HeavenCars.ViewModels.Cars.DetailCarViewModel
+
+
+@{
+
+    ViewBag.Title = "Car Details";
+    var photoCar = "~/Images/" + (Model.Car.PhotoCar ?? "noimage.png");
+
+}
+
+<h1>Car Detail</h1>
+
+<hr />
+
+<div class="jumbotron" style="margin-bottom:0">
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Model.Car.Name</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="@photoCar" asp-append-version="true" />
+
+                    
+                    <h4>Leeftijd: @Model.Car.MinLeeftijd</h4>
+                    <h4>Prijs: @Model.Car.Prijs</h4>
+                    <h4>Vermogen: @Model.Car.Kw</h4>
+                    <h4>Created Date : @Model.Car.CreatedDate</h4>
+
+                </div>
+
+                <div class="card-footer text-center">
+                    <a asp-controller="Cars" asp-action="ListCars" class="btn btn-info">Back</a>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@Model.Car.Id" class="btn btn-success">Edit</a>
+                        <a asp-controller="Cars" asp-action="Delete" asp-route-id="@Model.Car.Id" class="btn btn-danger">Delete</a>
+                    }
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/CustomScript.js"></script>
+}

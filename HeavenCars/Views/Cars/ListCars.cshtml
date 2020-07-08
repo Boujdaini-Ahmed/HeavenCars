@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HeavenCars.DataAccessLayer.Models.Cars.Car>
+
+@{
+
+    ViewBag.Title = "List Of All Cars";
+
+
+}
+
+<h1>List Of Cars</h1>
+
+<hr />
+
+<div class="jumbotron" style="margin-bottom:0">
+    
+    <form asp-action="ListCars" method="POST">
+
+        <div class="row input-group">
+            <input type="text" name="search" id="search" class="form-control"/>
+            <div class="input-group-btn">
+                <input type="submit" value="Search" class="btn btn-primary" />
+                <input type="submit" value="Reset" class="btn btn-warning" />
+            </div>
+        </div>
+    </form>
+    
+    <div class="card-deck">
+        @foreach (var car in Model)
+        {
+            var photoCar = $"~/images/{car.PhotoCar ?? "noimage.png"}";
+
+            <div class="card m-3" style="min-width: 18rem; max-width: 30.5%;">
+                <img class="card-img-top" alt="Cinque Terre" src="@photoCar" asp-append-version="true" />
+                <div class="card-header">
+                    <h3>@car.Name</h3>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Details" asp-controller="Cars" asp-route-id="@car.Id">
+                        <img src="~/images/loupe.jpg" height="70" width="70" asp-append-version="false" />
+                    </a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-controller="Cars" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                        }
+                    </div>
+                </div>
+
+        }
+    </div>
+</div>
+

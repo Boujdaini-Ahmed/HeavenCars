@@ -1,0 +1,168 @@
+﻿@inject SignInManager<HeavenCars.DataAccessLayer.Models.Account.ApplicationUser> signInManager;
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <environment include="Development">
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous"
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute"
+              asp-suppress-fallback-integrity="true">
+        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+
+    @RenderSection("Style", required: false)
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a asp-action="Index" asp-controller="Home" class="navbar-brand">
+                <img src="~/images/HCLogoo.jpg" height="40" width="40" asp-append-version="false" />
+            </a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            List
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-controller="Cars" asp-action="ListCars">Cars</a>
+                        </div>
+                    </li>
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-controller="Cars" asp-action="Create">Car</a>
+                        </div>
+                    </li>
+
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin") || User.IsInRole("User"))
+
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Account
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                            </div>
+                        </li>
+                    }
+
+
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin")@*|| User.IsInRole("SubAdmin")*@)
+{
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manage
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" asp-controller="Administration" asp-action="ListUsers">Users</a>
+                        <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">Roles</a>
+                    </div>
+                </li>
+            }
+                </ul>
+
+
+
+                        <ul class="navbar-nav ml-auto">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <form method="post" asp-action="logout" asp-controller="Account">
+                                        <button type="submit" class="nav-link btn btn-link py-0" style="width:auto;">
+                                            Logout @User.Identity.Name
+                                        </button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a asp-action="register" asp-controller="account" class="nav-link">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="Login" asp-controller="account" class="nav-link">Login</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+        </nav>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <div class="jumbotron " style="margin-bottom:0">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <h4> In the Heaven of Your Dream Car </h4>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <p class="pull-left copyright"> Copyright © HeavenCars by Ahmed Boujdaini 2020. All right reserved. </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+       
+<environment include="Development">
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/js/CustomScript.js"></script>
+</environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"
+                    asp-fallback-src="~/lib/jquery/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    asp-suppress-fallback-integrity="true"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+                    crossorigin="anonymous"
+                    asp-fallback-src="~/lib/bootstrap/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery"
+                    asp-suppress-fallback-integrity="true">
+            </script>
+
+            <script src="~/js/CustomScript.js"></script>
+        </environment>
+        @RenderSection("Scripts", required: false)
+</body>
+</html>
