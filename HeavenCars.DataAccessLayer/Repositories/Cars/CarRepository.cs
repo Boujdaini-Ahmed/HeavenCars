@@ -65,6 +65,12 @@ namespace HeavenCars.DataAccessLayer.Repositories.Cars
             context.SaveChanges();
             return carNew;
         }
+        // First push to github
+        // ouvrir HeavenCars en bas a droite
+        // pousser sur maison 
+        // pousser sur change
+        // message
+        // Commit and PUSH ALL
     }
 }
     
